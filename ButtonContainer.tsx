@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 let controller;
 
-export const ButtonContainer: React.FC<{}> = () => {
+export const ButtonContainer: React.FC<{}> = ({newCount}) => {
   const [count, setCount] = useState(0)
   const [loading, setLoading] = useState(false)
   const [cancel, setCancel] = useState(true)
@@ -10,6 +10,12 @@ export const ButtonContainer: React.FC<{}> = () => {
     const value = saved
     return value || 'xx.xx.xxx.xxx'
   })
+  const counterEl = useRef(newCount)
+
+  useEffect(()=> {
+    counterEl.current+=1
+  })
+
 
   localStorage.clear()
   
@@ -49,7 +55,7 @@ const handleCancel = () => {
     <div>
       <button onClick={handleClick} disabled={loading}> Click me {loading && '(loading)'} </button>
       <button onClick={handleCancel} disabled={cancel}> Cancel </button>
-      <p> Renders: {count} </p>
+      <p> Renders: {counterEl.current} </p>
       <p> Origin: {origin} </p>
       </div>
   
