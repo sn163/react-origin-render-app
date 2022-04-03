@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react';
 let controller;
 
-export const ButtonContainer: React.FC<{}> = ({newCount}) => {
-  const count = useRef(0)
+export const ButtonContainer: React.FC<{}> = () => {
+  const count = useRef(2)
   const [loading, setLoading] = useState(false)
   const [origin, setOrigin] = useState(() => {
     const saved = localStorage.getItem('origin')
