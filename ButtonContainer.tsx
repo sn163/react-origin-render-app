@@ -2,20 +2,20 @@ import React, {useState, useEffect, useRef} from 'react';
 let controller;
 
 export const ButtonContainer: React.FC<{}> = ({newCount}) => {
+  const count = useRef(0)
   const [loading, setLoading] = useState(false)
   const [origin, setOrigin] = useState(() => {
     const saved = localStorage.getItem('origin')
     const value = saved
     return value || 'xx.xx.xxx.xxx'
   })
-  const count = useRef(newCount)
-
+  
   useEffect(()=> {
     count.current+=1
   })
-
-
-  localStorage.clear()
+  
+  //clearing localStorage mainly for testing
+  //localStorage.clear()
   
 const handleClick = () => {
   controller = new AbortController();
@@ -48,7 +48,7 @@ const handleCancel = () => {
 
   return (
     <div>
-      <button onClick={handleClick} disabled={loading}> Click me {loading && '(loading)'} </button>
+      <button onClick={handleClick} disabled={loading}> { !loading ? 'Click me' : 'Loading...'} </button>
       <button onClick={handleCancel} disabled={!loading}> Cancel </button>
       <p> Renders: {count.current} </p>
       <p> Origin: {origin} </p>
