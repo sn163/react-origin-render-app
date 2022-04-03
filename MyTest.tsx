@@ -3,13 +3,20 @@ import { ButtonContainer } from './ButtonContainer';
 
 
 export const MyTest: React.FC<{}> = () => {
-  const [newCount, setNewCount] = useState(0)
+  const [newCount, setNewCount] = useState(1)
   const [checked, setChecked] = useState(false)
 
+  
 
   const handleCheck = () => {
-    if (!checked) setChecked(true)
-    else setChecked(false)
+   
+    if (!checked) {
+      setNewCount(newCount + 1)
+      setChecked(true)
+    } else {
+      setChecked(false)
+      setNewCount(1)
+    }
   }
 
   return (
