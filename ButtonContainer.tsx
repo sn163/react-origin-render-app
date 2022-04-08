@@ -45,7 +45,6 @@ const handleCancel = () => {
   console.log('Fetch has been aborted')
 }
 
-
   return (
     <div>
       <button onClick={handleClick} disabled={loading}> { !loading ? 'Click me' : 'Loading...'} </button>
