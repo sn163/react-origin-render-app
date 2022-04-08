@@ -7,9 +7,10 @@ export const MyTest: React.FC<{}> = () => {
 
   return (
     <div>
-      <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)} />
-      <label> Render button </label>
-      {checked && <ButtonContainer />}
+      <label> 
+      <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)} /> Render button
+       </label>
+      { checked && <ButtonContainer /> }
       </div>
   
   )
