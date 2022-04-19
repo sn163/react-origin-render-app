@@ -12,6 +12,7 @@ export const ButtonContainer: React.FC<{}> = () => {
     return saved || 'xx.xx.xxx.xxx'
   })
   const [mount, setMount] = useState(false)
+  const [hover, setHover] = useState(false)
 
   count.current+=1
  
@@ -26,7 +27,8 @@ export const ButtonContainer: React.FC<{}> = () => {
 
   //clearing localStorage mainly for testing
   //localStorage.clear()
-  
+
+
 const handleClick = () => {
   //create a new instance of the abort controller to to be consumed if the fetch is aborted
   controller.current = new AbortController();
@@ -61,11 +63,10 @@ const handleCancel = () => {
   console.log('Fetch has been aborted')
 }
 
-
   return (
     <div>
-      <button onClick={handleClick} disabled={loading}> { !loading ? 'Click me' : 'Loading...'} </button>
-      <button onClick={handleCancel} disabled={!loading}> Cancel </button>
+      <button onMouseOver={() => setHover(true)} onMouseOut={()=> setHover(false)} onClick={handleClick} style={ hover ? {backgroundColor : 'hotpink'} : {}}  disabled={loading}> { !loading ? 'Click me' : 'Loading...'} </button>
+      <button onClick={handleCancel} disabled={!loading} aria-label='cancel'> X </button>
       <p> Renders: {count.current} </p>
       <p> Origin: {origin} </p>
       </div>
